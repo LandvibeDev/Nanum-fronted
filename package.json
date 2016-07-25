@@ -19,7 +19,7 @@
     "lodash": "^4.13.1",
     "materialize-css": "^0.97.6",
     "react": "^15.2.1",
-    "react-dom": "^15.2npm i.1",
+    "react-dom": "^15.2.1",
     "react-grid-layout": "^0.12.7",
     "react-masonry-component": "^4.2.1",
     "react-materialize": "^0.14.4",
