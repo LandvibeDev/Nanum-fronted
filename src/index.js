@@ -4,10 +4,10 @@ import { App } from './components';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import counterReducer from './reducers';
+import counterApp from './reducers';
 
 
-const store = createStore(counterReducer);
+const store = createStore(counterApp);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(

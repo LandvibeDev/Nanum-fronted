@@ -1,8 +1,15 @@
-import {RECV_VALUE} from '../actions';
+import {RECV_VALUE,STUDY_VALUE} from '../actions';
+import { combineReducers } from 'redux';
 
 const initialValue = {
     value: -1
 };
+
+const initialStudy={
+    title:"defalut title",
+    content:"defalut content",
+    member:"defalut member"
+}
 
 const counterReducer = (state = initialValue, action) => {
     switch (action.type) {
@@ -15,4 +22,22 @@ const counterReducer = (state = initialValue, action) => {
     }
 };
 
-export default counterReducer;
+const studyInfo = (state =initialStudy,action) =>{
+    switch (action.type) {
+        case STUDY_VALUE:
+            return Object.assign({}, state, {
+                title: action.title,
+                content: action.content,
+                member: action.member
+            });
+        default:
+            return state;
+    }
+};
+
+const counterApp = combineReducers({
+    counterReducer,
+    studyInfo
+});
+
+export default counterApp;
