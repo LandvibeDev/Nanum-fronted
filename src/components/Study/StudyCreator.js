@@ -5,6 +5,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { receiveStudy } from '../../actions';
+import {Input, Button, Row} from 'react-materialize';
+
 
 class StudyCreator extends React.Component {
     constructor(props) {
@@ -21,14 +23,14 @@ class StudyCreator extends React.Component {
     render() {
         return (
             <div>
-                <p>
-                    <input type="text" name="title" value={this.state.title} onChange={this.handleChange} placeholder="title"/>
-                    <input type="text" name="content" value={this.state.content} onChange={this.handleChange} placeholder="content"/>
-                    <input type="text" name="member"  value={this.state.member} onChange={this.handleChange} placeholder="member"/>
-                    <button onClick={this.onClick}>
+                <Row>
+                    <Input s={12} type="text" name="title" value={this.state.title} onChange={this.handleChange} label="title"/>
+                    <Input s={12} type="text" name="content" value={this.state.content} onChange={this.handleChange} label="content"/>
+                    <Input s={12}type="text" name="member"  value={this.state.member} onChange={this.handleChange} label="member"/>
+                    <Button onClick={this.onClick}>
                         Insert
-                    </button>
-                </p>
+                    </Button>
+                </Row>
             </div>
         )
     }
@@ -42,7 +44,6 @@ class StudyCreator extends React.Component {
         this.setState(nextState);
     }
 }
-
 
 const mapDispatchToProps = (dispatch) =>{
     return {

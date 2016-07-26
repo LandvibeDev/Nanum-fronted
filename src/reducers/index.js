@@ -1,15 +1,16 @@
 import {RECV_VALUE,STUDY_VALUE} from '../actions';
 import { combineReducers } from 'redux';
+import {List, Map} from 'immutable';
 
 const initialValue = {
     value: -1
 };
 
-const initialStudy={
+const initialStudy=Map({
     title:"defalut title",
     content:"defalut content",
     member:"defalut member"
-}
+});
 
 const counterReducer = (state = initialValue, action) => {
     switch (action.type) {
@@ -22,14 +23,15 @@ const counterReducer = (state = initialValue, action) => {
     }
 };
 
-const studyInfo = (state =initialStudy,action) =>{
+const studyInfo = (state = initialStudy, action) =>{
     switch (action.type) {
         case STUDY_VALUE:
-            return Object.assign({}, state, {
-                title: action.title,
-                content: action.content,
-                member: action.member
-            });
+            return state.merge({
+              'title':action.title,
+              'content':action.content,
+              'member':action.member
+            })
+            //return state.set('title', action.title).set('content', action.content).set('memeber',action.memeber)
         default:
             return state;
     }
