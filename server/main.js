@@ -1,6 +1,7 @@
 import express from 'express';
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
+import path from 'path';
 
 const app = express();
 const port = 3000;
@@ -25,6 +26,9 @@ app.use('/images', express.static(__dirname + '/../images')); // 사진 파일 �
 app.use(express.static(__dirname + '/../node_modules')); // npm packages에 직접 접근 하는 경로
 app.use('/', express.static(__dirname + '/../public')); // public/index.html이 시작점
 
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, '../public', 'index.html'))
+})
 
 import counter from './routes/counter';
 let data = {number: 0};

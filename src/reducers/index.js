@@ -1,6 +1,7 @@
 import {RECV_VALUE,STUDY_VALUE} from '../actions';
 import { combineReducers } from 'redux';
 import {List, Map} from 'immutable';
+import {syncHistoryWithStore,routerReducer} from 'react-router-redux'
 
 const initialValue = {
     value: -1
@@ -39,7 +40,8 @@ const studyInfo = (state = initialStudy, action) =>{
 
 const counterApp = combineReducers({
     counterReducer,
-    studyInfo
+    studyInfo,
+    routing:routerReducer
 });
 
 export default counterApp;

@@ -17,7 +17,6 @@ class Login extends React.Component {
                 </Row>
                 <Button waves='light'>Sign in</Button>
                 <Link to="SignUp"><Button waves='light'>Sign up</Button></Link>
-                {this.props.children}
 
             </div>
         )
