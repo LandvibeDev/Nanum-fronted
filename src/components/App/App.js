@@ -1,12 +1,16 @@
 import React from 'react';
 import {Counter} from '../';
 import IssueList from  '../Issue/IssueList'
-import Study from '../Study/Study'
+import Main from '../Main/Main'
+
 
 class App extends React.Component {
     render() {
         return (
-            <Study />
+            <div>
+            <Main />
+                {this.props.children}
+            </div>
         )
     }
 }
