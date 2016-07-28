@@ -21,27 +21,20 @@ if(process.env.NODE_ENV == 'development'){
 
 }
 
-
 app.use('/images', express.static(__dirname + '/../images')); // 사진 파일 경로 path=/images/name.jpg로 접근
 app.use(express.static(__dirname + '/../node_modules')); // npm packages에 직접 접근 하는 경로
-app.use('/', express.static(__dirname + '/../public')); // public/index.html이 시작점
+app.use(express.static(__dirname + '/../public')); // public/index.html이 시작점
 
-app.get('*', function (request, response){
-  response.sendFile(path.resolve(__dirname, '../public', 'index.html'))
-})
 
-import counter from './routes/counter';
 import study from './routes/study';
 let data = {title:"axios tilte",content:"axios content",member:"Jeong"};
-//app.use('/counter', counter(data));
 app.use('/study',study(data));
 
-// app.get('/hello', (req, res) => {
-//     return res.send('Can you hear me?');
-// });
-//
-// import posts from './routes/posts';
-// app.use('/posts', posts);
+
+app.get('*', (req, res)=>{
+  return res.sendFile(path.resolve(__dirname, '../public', 'index.html'))
+});
+
 
 const server = app.listen(port, ()=> {
   console.log('Express listening on port', port);

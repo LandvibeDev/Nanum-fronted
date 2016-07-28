@@ -7,8 +7,13 @@ import { connect } from 'react-redux';
 import { receiveStudy } from '../../actions';
 import StudyCreator from './StudyCreator'
 import {Input, Button, Row, Table} from 'react-materialize';
+import axios from 'axios';
 
 class Study extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render (){
         return(
             <div>

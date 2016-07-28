@@ -27,8 +27,7 @@ class StudyCreator extends React.Component {
             axios.get('/study').then(response => {
                 this.props.onReceive(response.data.title,response.data.content,response.data.member);
             });
-        }
-
+        };
         getNumber();
     }
 
