@@ -31,8 +31,10 @@ app.get('*', function (request, response){
 })
 
 import counter from './routes/counter';
-let data = {number: 0};
-app.use('/counter', counter(data));
+import study from './routes/study';
+let data = {title:"axios tilte",content:"axios content",member:"Jeong"};
+//app.use('/counter', counter(data));
+app.use('/study',study(data));
 
 // app.get('/hello', (req, res) => {
 //     return res.send('Can you hear me?');

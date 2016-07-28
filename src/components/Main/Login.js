@@ -16,7 +16,7 @@ class Login extends React.Component {
                     <Input s={12} type="password" label="password"  />
                 </Row>
                 <Button waves='light'>Sign in</Button>
-                <Link to="SignUp"><Button waves='light'>Sign up</Button></Link>
+                <Link to="study"><Button waves='light'>study</Button></Link>
 
             </div>
         )
