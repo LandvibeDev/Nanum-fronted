@@ -24,7 +24,7 @@ class StudyCreator extends React.Component {
 
     componentDidMount(){
         let getNumber = () => {
-            axios.get('/study').then(response => {
+            axios.get('/ajax-study').then(response => {
                 this.props.onReceive(response.data.title,response.data.content,response.data.member);
             });
         };
@@ -53,7 +53,7 @@ class StudyCreator extends React.Component {
         this.props.onReceive(this.state.title,this.state.content,this.state.member);
     }
     onClick2(){
-        axios.post('/study').then(response => {
+        axios.post('/ajax-study').then(response => {
             this.props.onReceive(response.data.title,response.data.content,response.data.member);
         });
     }
