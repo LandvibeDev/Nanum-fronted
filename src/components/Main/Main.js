@@ -3,12 +3,17 @@
  */
 import React from 'react';
 import Login from './Login'
-
+import Header from './Header'
+import Side from './Side'
 
 class Main extends React.Component {
     render() {
         return (
-            <Login />
+            <div>
+                <Header />
+                <Side />
+                <Login />
+            </div>
         )
     }
 }

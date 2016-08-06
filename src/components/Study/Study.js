@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveStudy } from '../../actions';
+import { } from '../../actions';
 import StudyCreator from './StudyCreator'
 import {List, Map} from 'immutable';
 import {Input, Button, Row, Table} from 'react-materialize';
