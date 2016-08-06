@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveStudy } from '../../actions';
+import { receiveStudy,postStudy,getStudy } from '../../actions';
 import axios from 'axios';
 import {Input, Button, Row} from 'react-materialize';
 
@@ -17,18 +17,14 @@ class StudyCreator extends React.Component {
         this.handleChange=this.handleChange.bind(this);
         this.state = {
             title: "",
-            content: "",
-            member:""
+            topic: "",
+            id:""
         };
+
     }
 
     componentDidMount(){
-        let getNumber = () => {
-            axios.get('/ajax-study').then(response => {
-                this.props.onReceive(response.data.title,response.data.content,response.data.member);
-            });
-        };
-        getNumber();
+        this.props.getReceive();
     }
 
     render() {
@@ -36,8 +32,8 @@ class StudyCreator extends React.Component {
             <div>
                 <Row>
                     <Input s={12} type="text" name="title" value={this.state.title} onChange={this.handleChange} label="title"/>
-                    <Input s={12} type="text" name="content" value={this.state.content} onChange={this.handleChange} label="content"/>
-                    <Input s={12}type="text" name="member"  value={this.state.member} onChange={this.handleChange} label="member"/>
+                    <Input s={12} type="text" name="topic" value={this.state.topic} onChange={this.handleChange} label="topic"/>
+                    <Input s={12}type="text" name="id"  value={this.state.id} onChange={this.handleChange} label="id"/>
                     <Button onClick={this.onClick}>
                         Insert
                     </Button>
@@ -50,12 +46,10 @@ class StudyCreator extends React.Component {
     }
 
     onClick() {
-        this.props.onReceive(this.state.title,this.state.content,this.state.member);
+        this.props.onReceive(this.state.title,this.state.topic,this.state.id);
     }
     onClick2(){
-        axios.post('/ajax-study').then(response => {
-            this.props.onReceive(response.data.title,response.data.content,response.data.member);
-        });
+        this.props.postReceive();
     }
     handleChange(e){
         var nextState = {};
@@ -66,11 +60,17 @@ class StudyCreator extends React.Component {
 
 const mapDispatchToProps = (dispatch) =>{
     return {
-        onReceive: (title,content,member) => {
-            dispatch(receiveStudy(title,content,member));
+        onReceive: (title,topic,id) => {
+            dispatch(receiveStudy(title,topic,id));
+        },
+        postReceive:() =>{
+            dispatch(postStudy());
+        },
+        getReceive:() =>{
+            dispatch(getStudy());
         }
     }
-}
+};
 
 StudyCreator = connect(undefined, mapDispatchToProps)(StudyCreator);
 

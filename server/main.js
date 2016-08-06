@@ -27,7 +27,7 @@ app.use(express.static(__dirname + '/../public')); // public/index.html이 시�
 
 
 import study from './routes/study';
-let data = {title:"axios tilte",content:"axios content",member:"Jeong"};
+let data = {title:"axios tilte",topic:"axios content",id:"Jeong"};
 app.use('/ajax-study',study(data));
 
 

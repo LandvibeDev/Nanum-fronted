@@ -6,8 +6,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { receiveStudy } from '../../actions';
 import StudyCreator from './StudyCreator'
+import {List, Map} from 'immutable';
 import {Input, Button, Row, Table} from 'react-materialize';
 import axios from 'axios';
+import update from 'react-addons-update'
 
 class Study extends React.Component {
     constructor(props) {
@@ -21,17 +23,17 @@ class Study extends React.Component {
                 <thead>
                   <tr>
                     <th data-field="title">Title</th>
-                    <th data-field="content">Content</th>
-                    <th data-field="member">Member</th>
+                    <th data-field="topic">topic</th>
+                    <th data-field="id">id</th>
                   </tr>
                 </thead>
-                <tbody>
-                <tr>
-                  <td>{this.props.title}</td>
-                  <td>{this.props.content}</td>
-                  <td>{this.props.member}</td>
-                </tr>
-                </tbody>
+                    {this.props.studyData.map((study, i) => {
+                        return (<StudyList title={study.title}
+                                           topic={study.topic}
+                                           id={study.id}
+                                           key={i}/>);
+                    })}
+
               </Table>
                 <StudyCreator/>
             </div>
@@ -42,12 +44,25 @@ class Study extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(typeof state.studyInfo)
+    console.log(state.studyInfo)
+
     return {
-        title: state.studyInfo.get('title'),
-        content:state.studyInfo.get('content'),
-        member:state.studyInfo.get('member')
+        studyData: state.studyInfo
     }
 };
+
+class StudyList extends React.Component {
+    render() {
+        return(
+            <tbody>
+            <tr>
+                <td>{this.props.title}</td>
+                <td>{this.props.topic}</td>
+                <td>{this.props.id}</td>
+            </tr>
+            </tbody>
+        );
+    }
+}
 
 export default connect(mapStateToProps)(Study);
