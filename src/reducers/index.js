@@ -1,4 +1,4 @@
-import {RECV_VALUE,STUDY_VALUE} from '../actions';
+import {RECV_VALUE,GET_STUDY,POST_STUDY} from '../actions';
 import { combineReducers } from 'redux';
 import {List, Map} from 'immutable';
 import {syncHistoryWithStore,routerReducer} from 'react-router-redux'
@@ -8,7 +8,7 @@ const initialValue = {
     value: -1
 };
 
-const initialStudy=List();
+const initialStudy={data:[]};
 
 const counterReducer = (state = initialValue, action) => {
     switch (action.type) {
@@ -23,12 +23,14 @@ const counterReducer = (state = initialValue, action) => {
 
 const studyInfo = (state = initialStudy, action) =>{
     switch (action.type) {
-        case STUDY_VALUE:
-            return state.push(Map({
-                title: action.title,
-                topic: action.topic,
-                id:action.id,
-            }));
+        case GET_STUDY:
+            return update(state, {
+                data: { $set: action.data }
+            });
+        case POST_STUDY:
+            return update(state, {
+                data: { $push: action.data }
+            });
 
             //return state.set('title', action.title).set('content', action.content).set('memeber',action.memeber)
         default:

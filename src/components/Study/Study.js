@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
     console.log(state.studyInfo)
 
     return {
-        studyData: state.studyInfo
+        studyData: state.studyInfo.data
     }
 };
 

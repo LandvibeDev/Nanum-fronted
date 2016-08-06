@@ -9,7 +9,7 @@ export default function study(data) {
 
     router.post('/', (req,res)=>{
 
-        return res.json({title: "post title",topic:"post content",id:"post member"});
+        return res.json([{title: "post title",topic:"post content",id:"post member"}]);
     });
 
     router.get('/', (req,res)=>{

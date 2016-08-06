@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveStudy,postStudy,getStudy } from '../../actions';
+import { postStudy,getStudy,PostStudy } from '../../actions';
 import axios from 'axios';
 import {Input, Button, Row} from 'react-materialize';
 
@@ -46,7 +46,7 @@ class StudyCreator extends React.Component {
     }
 
     onClick() {
-        this.props.onReceive(this.state.title,this.state.topic,this.state.id);
+        this.props.onReceive([{title:this.state.title,topic:this.state.topic,id:this.state.topic}]);
     }
     onClick2(){
         this.props.postReceive();
@@ -60,8 +60,8 @@ class StudyCreator extends React.Component {
 
 const mapDispatchToProps = (dispatch) =>{
     return {
-        onReceive: (title,topic,id) => {
-            dispatch(receiveStudy(title,topic,id));
+        onReceive: (data) => {
+            dispatch(PostStudy(data));
         },
         postReceive:() =>{
             dispatch(postStudy());
