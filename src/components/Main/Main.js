@@ -10,10 +10,41 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <Header />
-                <Side />
-                <Login />
+                <div className ="row">
+                <ul className="collapsible col s6" data-collapsible="accordion">
+                    <li>
+                        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
+                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div className="collapsible-header"><i className="material-icons">place</i>Second</div>
+                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div className="collapsible-header"><i className="material-icons">whatshot</i>Third</div>
+                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                </ul>
+
+                <ul className="collapsible col s6" data-collapsible="accordion">
+                    <li>
+                        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
+                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div className="collapsible-header"><i className="material-icons">place</i>Second</div>
+                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div className="collapsible-header"><i className="material-icons">whatshot</i>Third</div>
+                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                </ul>
+                </div>
             </div>
+
+
+
         )
     }
 }

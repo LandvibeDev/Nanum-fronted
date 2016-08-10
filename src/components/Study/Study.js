@@ -6,7 +6,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { } from '../../actions';
 import StudyCreator from './StudyCreator'
-import {List, Map} from 'immutable';
 import {Input, Button, Row, Table} from 'react-materialize';
 import axios from 'axios';
 import update from 'react-addons-update'
@@ -28,9 +27,7 @@ class Study extends React.Component {
                   </tr>
                 </thead>
                     {this.props.studyData.map((study, i) => {
-                        return (<StudyList title={study.title}
-                                           topic={study.topic}
-                                           id={study.id}
+                        return (<StudyList data={study.toJS()}
                                            key={i}/>);
                     })}
 
@@ -47,7 +44,7 @@ const mapStateToProps = (state) => {
     console.log(state.studyInfo)
 
     return {
-        studyData: state.studyInfo.data
+        studyData: state.studyInfo
     }
 };
 
@@ -56,9 +53,9 @@ class StudyList extends React.Component {
         return(
             <tbody>
             <tr>
-                <td>{this.props.title}</td>
-                <td>{this.props.topic}</td>
-                <td>{this.props.id}</td>
+                <td>{this.props.data.title}</td>
+                <td>{this.props.data.topic}</td>
+                <td>{this.props.data.id}</td>
             </tr>
             </tbody>
         );

@@ -29,7 +29,7 @@ class Side extends React.Component {
                     </div></li>
                     <li><div className="userView">
                             <a href=""><span className="name">Jeong</span></a>
-                            <a href=""><span className="email">jgb6255@gemail.com</span></a>
+                            <a href=""><span className="email">jgb6255@gmail.com</span></a>
                     </div></li>
                     <li><div className="divider"></div></li>
                     <Link to="studys"><li><a className="waves-effect">스터디 홈</a></li></Link>
@@ -37,6 +37,7 @@ class Side extends React.Component {
                     <Link to="studys"><li><a className="waves-effect">스터디</a></li></Link>
                     <li><div className="divider"></div></li>
                     <Link to="studys"><li><a className="waves-effect">질문</a></li></Link>
+                    <li><div className="divider"></div></li>
                 </ul>
             </div>
 

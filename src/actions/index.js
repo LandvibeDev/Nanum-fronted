@@ -1,15 +1,7 @@
-export const RECV_VALUE = "RECV_VALUE";
+
 export const GET_STUDY = "GET_STUDY";
 export const POST_STUDY = "POST_STUDY";
 import axios from 'axios';
-
-
-export function receiveValue(value) {
-    return {
-        type: RECV_VALUE,
-        value: value
-    };
-};
 
 export function GetStudy(data) {
     return {
@@ -39,5 +31,6 @@ export function getStudy() { // needs to dispatch, so it is first argument
             return (dispatch(GetStudy(response.data)));
         })
 };
+
 
 

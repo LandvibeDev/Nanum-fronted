@@ -2,25 +2,62 @@
  * Created by jgb on 2016-07-26.
  */
 import React from 'react';
-import Study from '../Study/Study'
-import SignUp from './SignUp'
-import {Input, Button, Row, Table} from 'react-materialize';
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
+import { connect } from 'react-redux';
+import {Link, browserHistory} from 'react-router'
+import { loginRequest } from '../../actions/Login';
+import LoginCreator from './LoginCreator'
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    handleLogin(id, pw) {
+        return this.props.loginRequest(id, pw).then(
+            () => {
+                if(this.props.status === "SUCCESS") {
+                    // create session data
+                    let loginData = {
+                        isLoggedIn: true,
+                        username: id
+                    };
+
+                    document.cookie = 'key=' + btoa(JSON.stringify(loginData));
+
+                    Materialize.toast('Welcome, ' + id + '!', 2000);
+                    browserHistory.push('/');
+                    return true;
+                } else {
+                    let $toastContent = $('<span style="color: #FFB4BA">Incorrect username or password</span>');
+                    Materialize.toast($toastContent, 2000);
+                    return false;
+                }
+            }
+        );
+    }
+
     render() {
         return (
             <div>
-                <Row>
-                    <Input s={12} label="First Name" />
-                    <Input s={12} type="password" label="password"  />
-                </Row>
-                <Button waves='light'>Sign in</Button>
-                <Link to="signup"><Button waves='light'>SignUp</Button></Link>
-
+                <LoginCreator onLogin={this.handleLogin}/>
             </div>
         )
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        status: state.Login.toJS().login.status
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginRequest: (id, pw) => {
+            dispatch(loginRequest(id,pw));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

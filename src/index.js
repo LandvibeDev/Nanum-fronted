@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import counterApp from './reducers';
 import SignUp from './components/Main/SignUp'
 import Login from './components/Main/Login'
+import Main from './components/Main/Main'
 import Study from './components/Study/Study'
 import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
 import {syncHistoryWithStore,routerReducer} from 'react-router-redux'
@@ -21,6 +22,7 @@ ReactDOM.render(
     <Provider store = {store}>
         <Router history = {history}>
             <Route path = "/" component = {App}>
+                <IndexRoute component = {Main} />
                 <Route path = "studys" component = {Study} />
                 <Route path = "login" component = {Login} />
                 <Route path = "signup" component = {SignUp} />

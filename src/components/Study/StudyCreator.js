@@ -45,7 +45,7 @@ class StudyCreator extends React.Component {
     }
 
     onClick() {
-        this.props.onReceive([{title:this.state.title,topic:this.state.topic,id:this.state.id}]);
+        this.props.onReceive({title:this.state.title,topic:this.state.topic,id:this.state.id});
     }
     onClick2(){
         this.props.postReceive();

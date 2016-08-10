@@ -12,7 +12,7 @@ class Header extends React.Component {
         return (
             <nav>
                 <div className="nav-wrapper ">
-                    <a href="#" className="brand-logo center">Logo</a>
+                    <a href="/" className="brand-logo center">Nanum</a>
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
                         <li><Link to ="login">SignIn</Link></li>
                     </ul>
