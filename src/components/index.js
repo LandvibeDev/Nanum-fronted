@@ -1,5 +1,11 @@
-import App from './App/App.js';
-import Spinner from './Spinner/Spinner.js';
-import Study from './Study/Study.js'
+import Spinner from './Spinner/Spinner';
 
-export { App, Spinner ,Study};
+import StudyCreator from './Study/StudyCreator'
+
+import Header from './Main/Header'
+import LoginCreator from './Main/LoginCreator'
+
+import Side from './Main/Side'
+
+
+export { Spinner ,StudyCreator, Header,  LoginCreator, Side};

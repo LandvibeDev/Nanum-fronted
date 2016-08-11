@@ -4,8 +4,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router'
-import { loginRequest } from '../../actions/Login';
-import LoginCreator from './LoginCreator'
+import { loginRequest } from '../actions/Login';
+import LoginCreator from '../components/Main/LoginCreator'
 
 class Login extends React.Component {
     constructor(props) {

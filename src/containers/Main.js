@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import Login from './Login'
-import Header from './Header'
-import Side from './Side'
+import Header from '../components/Main/Header'
+import Side from '../components/Main/Side'
 
 class Main extends React.Component {
     render() {

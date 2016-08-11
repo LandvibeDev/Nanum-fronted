@@ -4,11 +4,8 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { } from '../../actions';
-import StudyCreator from './StudyCreator'
+import StudyCreator from '../components/Study/StudyCreator'
 import {Input, Button, Row, Table} from 'react-materialize';
-import axios from 'axios';
-import update from 'react-addons-update'
 
 class Study extends React.Component {
     constructor(props) {

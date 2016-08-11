@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {Link} from 'react-router'
-
+import style from '../../Style.css'
 
 class Side extends React.Component {
 
@@ -38,6 +38,7 @@ class Side extends React.Component {
                     <li><div className="divider"></div></li>
                     <Link to="studys"><li><a className="waves-effect">질문</a></li></Link>
                     <li><div className="divider"></div></li>
+
                 </ul>
             </div>
 

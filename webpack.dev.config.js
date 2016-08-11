@@ -5,6 +5,7 @@ module.exports = {
     // 여기서부터 import 되어있는 다른 스크립트를 불러온다.
     entry: [
         './src/index.js',
+        './src/Style.css',
         'webpack-dev-server/client?http://0.0.0.0:3001',
         'webpack/hot/only-dev-server'
     ],
@@ -45,7 +46,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+                loader: 'style!css-loader'
             },
 
         ]

@@ -1,7 +1,7 @@
 module.exports = {
     // 가장 처음 읽을 스크립트파일
     // 여기서부터 import 되어있는 다른 스크립트를 불러온다.
-    entry: ['./src/index.js','./src/style.css'],
+    entry: ['./src/index.js','./src/Style.css'],
 
     // 파일을 합치고 ./public/bundle.js 에 저장한다.
     output: {
@@ -23,7 +23,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+                loader: 'style!css-loader'
             }
         ]
     }

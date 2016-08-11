@@ -3,7 +3,7 @@
 }
 
 body{
-    padding-left:240px;
+    padding-left:300px;
 }
 
 @media only screen and (max-width : 992px) {
@@ -12,11 +12,17 @@ body{
     }
 }
 
+.side-nav .userView .circle{
+    height: 200px;
+    width: 200px;
+}
+
 .img-top{
     padding-top:20px;
     top:20px;
     margin-top:20px;
 }
+
 
 
 
