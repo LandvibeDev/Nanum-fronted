@@ -13,7 +13,7 @@ const initialValue = {
 const initialStudy = List();
 
 
-const studyInfo = (state = initialStudy, action) =>{
+export default function studyInfo (state = initialStudy, action){
     switch (action.type) {
         case GET_STUDY:
             /*return update(state, {

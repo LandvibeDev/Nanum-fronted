@@ -12,7 +12,7 @@ export function loginRequest(id, password) {
         dispatch(login());
 
         // API REQUEST
-        return axios.post('/ajax-login', { id:id, password:password })
+        return axios.post('/ajax-login', { id, password })
             .then((response) => {
                 // SUCCEED
                 if(response.data.success)

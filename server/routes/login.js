@@ -8,7 +8,7 @@ export default function login() {
 
     router.post('/', (req,res)=>{
         console.log(req.body);
-        if(req.body.id == "admin" && req.body.password == "1234"){
+       // if(req.body.id == "admin" && req.body.password == "1234"){
             let session = req.session;
             session.loginInfo = {
                 id: req.body.id
@@ -16,9 +16,9 @@ export default function login() {
 
             // RETURN SUCCESS
             return res.json({success:true});
-        }else{
-            return res.json({success:false});
-        }
+       // }else{
+       //     return res.json({success:false});
+        //}
 
     });
 

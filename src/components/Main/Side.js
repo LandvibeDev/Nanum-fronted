@@ -24,9 +24,7 @@ class Side extends React.Component {
         return (
             <div>
                 <ul id="slide-out" className="side-nav fixed">
-                    <li><div className="userView">
-                        <img className="circle responsive-img img-top" src="images/man.png"/>
-                    </div></li>
+                    <img className="circle responsive-img img-top" src="images/man.png"/>
                     <li><div className="userView">
                             <a href=""><span className="name">Jeong</span></a>
                             <a href=""><span className="email">jgb6255@gmail.com</span></a>
@@ -40,6 +38,7 @@ class Side extends React.Component {
                     <li><div className="divider"></div></li>
 
                 </ul>
+
             </div>
 
 

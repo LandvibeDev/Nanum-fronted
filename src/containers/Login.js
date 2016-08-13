@@ -35,6 +35,7 @@ class Login extends React.Component {
                 }
             }
         );
+
     }
 
     render() {
@@ -51,6 +52,7 @@ const mapStateToProps = (state) => {
         status: state.Login.toJS().login.status
     };
 };
+
 
 const mapDispatchToProps = (dispatch) => {
     return {

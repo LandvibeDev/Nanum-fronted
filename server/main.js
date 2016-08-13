@@ -2,6 +2,8 @@ import express from 'express';
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
 import path from 'path';
+import bodyParser from 'body-parser';
+import session from 'express-session';
 
 const app = express();
 const port = 3000;
@@ -24,13 +26,20 @@ if(process.env.NODE_ENV == 'development'){
 app.use('/images', express.static(__dirname + '/../images')); // 사진 파일 경로 path=/images/name.jpg로 접근
 app.use(express.static(__dirname + '/../node_modules')); // npm packages에 직접 접근 하는 경로
 app.use(express.static(__dirname + '/../public')); // public/index.html이 시작점
+app.use(bodyParser.json());  //요청에서 JSON을 파싱할때 사용되는 미들웨어
+app.use(session({
+  secret: 'Nanum1$1$234',
+  resave: false,
+  saveUninitialized: true
+}));// express 에서 세션을 다룰 때 사용되는 미들웨어
 
 
 import study from './routes/study';
 import login from './routes/login';
 let data = {title:"axios tilte",topic:"axios content",id:"Jeong"};
+
 app.use('/ajax-study',study(data));
-app.use('/ajax-login',login());
+app.use('/ajax-login',login);
 
 
 app.get('*', (req, res)=>{

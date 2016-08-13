@@ -5,9 +5,9 @@ module.exports = {
     // 여기서부터 import 되어있는 다른 스크립트를 불러온다.
     entry: [
         './src/index.js',
-        './src/Style.css',
         'webpack-dev-server/client?http://0.0.0.0:3001',
-        'webpack/hot/only-dev-server'
+        'webpack/hot/only-dev-server',
+        './src/Style.css',
     ],
 
     // 파일을 합치고 ./public/bundle.js 에 저장한다.
