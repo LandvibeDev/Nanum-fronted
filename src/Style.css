@@ -4,7 +4,10 @@
 
 body{
     padding-left:300px;
+
 }
+
+
 
 @media only screen and (max-width : 992px) {
     body {
@@ -21,6 +24,11 @@ body{
     height:200px;
     width:200px;
 }
+
+.calendar{
+    height:250px;
+}
+
 
 
 

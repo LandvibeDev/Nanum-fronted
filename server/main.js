@@ -23,6 +23,8 @@ if(process.env.NODE_ENV == 'development'){
 
 }
 
+
+app.use(express.static(__dirname + '/../static'));
 app.use('/images', express.static(__dirname + '/../images')); // 사진 파일 경로 path=/images/name.jpg로 접근
 app.use(express.static(__dirname + '/../node_modules')); // npm packages에 직접 접근 하는 경로
 app.use(express.static(__dirname + '/../public')); // public/index.html이 시작점

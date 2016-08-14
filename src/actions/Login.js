@@ -12,14 +12,24 @@ export function loginRequest(id, password) {
         dispatch(login());
 
         // API REQUEST
-        return axios.post('/ajax-login', { id, password })
-            .then((response) => {
+        return axios({
+            method: 'post',
+            url: 'http://landvibe.com:8000/accounts/login',
+            withCredentials: true,
+            data: {
+                Username:id,
+                Password:password,
+                csrfmiddlewaretoken:'usyoxuju06kl9nw9gmpdva8n0lwwymww'
+            }
+        }).then((response) => {
                 // SUCCEED
-                if(response.data.success)
-                    dispatch(loginSuccess(id));
-                else
-                    dispatch(loginFailure());
-            });
+                console.log(response);
+                dispatch(loginSuccess(id));
+
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
     };
 }
 

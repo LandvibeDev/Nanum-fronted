@@ -7,44 +7,57 @@ import Header from '../components/Main/Header'
 import Side from '../components/Main/Side'
 
 class Main extends React.Component {
+    componentDidMount(prevProps, prveState) {
+        $(document).ready(()=> {
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // calendar properties
+
+                businessHours: true,
+
+                editable: true,
+
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+
+                selectable:true,
+
+                selectHelper:true
+            })
+
+        });
+
+    }
+
+    componentDidUpdate(prevProps, prveState) {
+        // WHEN COMPONENT UPDATES, INITIALIZE DROPDOWN
+        // (TRIGGERED WHEN LOGGED IN)
+
+
+
+        $(document).ready(()=> {
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // calendar properties
+            })
+
+        });
+
+
+    }
+
     render() {
         return (
-            <div>
-                <div className ="row">
-                <ul className="collapsible col s6" data-collapsible="accordion">
-                    <li>
-                        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
-                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div className="collapsible-header"><i className="material-icons">place</i>Second</div>
-                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div className="collapsible-header"><i className="material-icons">whatshot</i>Third</div>
-                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                </ul>
-
-                <ul className="collapsible col s6" data-collapsible="accordion">
-                    <li>
-                        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
-                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div className="collapsible-header"><i className="material-icons">place</i>Second</div>
-                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                    <li>
-                        <div className="collapsible-header"><i className="material-icons">whatshot</i>Third</div>
-                        <div className="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    </li>
-                </ul>
-                </div>
+            <div className="row calendar">
+                <div className="col s8" id='calendar'></div>
             </div>
-
-
-
         )
     }
 }

@@ -14,7 +14,7 @@ class Login extends React.Component {
     }
 
     handleLogin(id, pw) {
-        return this.props.loginRequest(id, pw).then(
+        return this.props.loginRequests(id, pw).then(
             () => {
                 if(this.props.status === "SUCCESS") {
                     // create session data
@@ -35,7 +35,6 @@ class Login extends React.Component {
                 }
             }
         );
-
     }
 
     render() {
@@ -53,11 +52,10 @@ const mapStateToProps = (state) => {
     };
 };
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        loginRequest: (id, pw) => {
-            dispatch(loginRequest(id,pw));
+        loginRequests: (id, pw) => {
+            return dispatch(loginRequest(id,pw));
         }
     };
 };
