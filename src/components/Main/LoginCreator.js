@@ -38,8 +38,8 @@ class LoginCreator extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="input-field col s12">
+            <div className="col s12 m12 l4 hide-on-med-and-down">
+                <div className="input-field col l10">
                     <label>ID</label>
                     <input
                         name="id"
@@ -48,7 +48,7 @@ class LoginCreator extends React.Component {
                         onChange={this.handleChange}
                         value={this.state.id}/>
                 </div>
-                <div className="input-field col s12">
+                <div className="input-field col l10">
                     <label>Password</label>
                     <input
                         name="password"
@@ -57,8 +57,11 @@ class LoginCreator extends React.Component {
                         onChange={this.handleChange}
                         value={this.state.password}/>
                 </div>
-                <a className="waves-effect waves-light btn"
-                   onClick={this.handleLogin}>SUBMIT</a>
+                <div className="input-field col l10">
+                    <a className="waves-effect waves-green col btn l4 offset-l3 red ">Sign up</a>
+                    <a className="waves-effect waves-light col btn l4 offset-l1 " onClick={this.handleLogin}>Sign in</a>
+                </div>
+
             </div>
         )
     }

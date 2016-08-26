@@ -16,8 +16,8 @@ class Header extends React.Component {
                 <div className="nav-wrapper ">
                     <a href="/" className="brand-logo center">Nanum</a>
                     <ul className="left hide-on-med-and-down">
-                        <li><Link to=""><i className="material-icons">menu</i></Link></li>
-                        <li><Link to ="login">SignIn</Link></li>
+                        <li><Link to="/"><i className="material-icons">menu</i></Link></li>
+                        <li><a onClick={this.props.onLogout}>LogOut</a></li>
                     </ul>
 
                 </div>

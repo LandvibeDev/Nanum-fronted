@@ -4,7 +4,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router'
-import { loginRequest } from '../actions/Login';
+import { loginRequest,userInfo } from '../actions/Login';
 import LoginCreator from '../components/Main/LoginCreator'
 
 class Login extends React.Component {
@@ -16,14 +16,19 @@ class Login extends React.Component {
     handleLogin(id, pw) {
         return this.props.loginRequests(id, pw).then(
             () => {
+                console.log(this.props.status);
                 if(this.props.status === "SUCCESS") {
                     // create session data
                     let loginData = {
                         isLoggedIn: true,
-                        username: id
+                        username: id,
+                        token:this.props.token
                     };
 
                     document.cookie = 'key=' + btoa(JSON.stringify(loginData));
+                    this.props.loginInfo(this.props.token).then(()=>{
+                        //Materialize.toast('Welcome, ' + this.props.currentUser + '!', 2000);
+                    });
 
                     Materialize.toast('Welcome, ' + id + '!', 2000);
                     browserHistory.push('/');
@@ -47,8 +52,11 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+
     return {
-        status: state.Login.toJS().login.status
+        status: state.Login.toJS().login.status,
+        token:state.Login.toJS().status.token,
+        currentUser:state.Login.toJS().status.currentUser
     };
 };
 
@@ -56,6 +64,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loginRequests: (id, pw) => {
             return dispatch(loginRequest(id,pw));
+        },
+        loginInfo:(token) =>{
+            return dispatch(userInfo(token));
         }
     };
 };

@@ -2,12 +2,9 @@
     padding-top:300px;
 }
 
-body{
+body {
     padding-left:300px;
-
 }
-
-
 
 @media only screen and (max-width : 992px) {
     body {
@@ -27,6 +24,10 @@ body{
 
 .calendar{
     height:250px;
+}
+
+.calendar-modal{
+    display:inline;
 }
 
 

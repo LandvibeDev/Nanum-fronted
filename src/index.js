@@ -7,12 +7,12 @@ import {syncHistoryWithStore,routerReducer} from 'react-router-redux'
 import thunk from 'redux-thunk';
 
 import counterApp from './reducers';
-import { App, SignUp, Login, Main, Study } from './containers';
+import { App, SignUp, Login, Main, Study, Login2 } from './containers';
 
 
 const store = createStore(counterApp,applyMiddleware(thunk));
 
-const history = syncHistoryWithStore(browserHistory,store)
+const history = syncHistoryWithStore(browserHistory,store);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
