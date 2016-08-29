@@ -11,3 +11,4 @@ export const LOGIN_INFO="LOGIN_INFO";
 export const LOGIN = "LOGIN";
 export const LOGOUT="LOGOUT";
 export const GET_STATUS ="GET_STATUS";
+export const CAL_CLICKED = "CAL_CLICKED";

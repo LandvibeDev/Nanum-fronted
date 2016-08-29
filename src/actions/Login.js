@@ -41,15 +41,15 @@ export function userInfo(token) {
         // API REQUEST
         return axios({
             method: 'get',
-            url: 'http://landvibe.com:8000/accounts/login/',
+            url: 'http://landvibe.com:8000/users/',
             headers: {
                 'Authorization': 'Token ' + token
             },
 
         }).then((response) => {
             // SUCCEED
-            console.log(response);
-            dispatch(info(response.data.username));
+            console.log(response.data);
+            dispatch(info(response.data));
 
         }).catch((error)=>{
             console.log(error);
@@ -62,6 +62,7 @@ export function getStatusRequest(token,username) {
     return (dispatch) => {
         // inform Get Status API is starting
         dispatch(getStatus(token,username));
+        dispatch(userInfo(token));
 
         /*return axios.get('/api/account/getInfo')
             .then((response) => {
@@ -86,10 +87,10 @@ export function logoutRequest() {
     }
 }
 
-export function info(username) {
+export function info(data) {
     return {
         type: LOGIN_INFO,
-        username:username
+        data:data
     };
 }
 

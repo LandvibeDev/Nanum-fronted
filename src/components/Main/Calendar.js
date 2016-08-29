@@ -2,18 +2,19 @@
  * Created by jgb on 2016-08-19.
  */
 import React from 'react';
-import {} from 'react-materialize';
-
+import { calendar_click } from '../../actions/Calendar'
+import { connect } from 'react-redux';
 
 class Calendar extends React.Component {
     constructor(props) {
         super(props);
         this.state= {
-            eventTitle: ""
+            check:false
         };
 
     }
     componentDidMount(prevProps, prveState) {
+        const test=this.props.calendar_click;
 
         $(document).ready(()=> {
             $('select').material_select();
@@ -45,7 +46,7 @@ class Calendar extends React.Component {
 
                 },
                 select: function(start, end) {
-                    $('#modal1').openModal();
+                    test(start,end);
                     //let title = prompt('Event Title:');
                     let eventData;
                     if (title) {
@@ -61,8 +62,9 @@ class Calendar extends React.Component {
 
                 eventClick: function(calEvent, jsEvent, view) {
                     //alert('Event: ' + calEvent.title);
+                    test(calEvent.start,calEvent.end,calEvent.title);
 
-                    $('#modal1').openModal();
+
 
 
                     // change the border color just for fun
@@ -126,93 +128,66 @@ class Calendar extends React.Component {
 
 
     render() {
+        const test=(
+            <div className="col s4">
+                <h1 className="center">Content</h1>
+                <p>start:{this.props.start}</p>
+                <p>end:{this.props.end} </p>
+                <p>title:{this.props.title} </p>
+
+                <form action="/" className="row">
+                    <p className="col s3">
+                        <input name="group1" type="radio" id="test1" />
+                        <label for="test1">Red</label>
+                    </p>
+                    <p className="col s3">
+                        <input name="group1" type="radio" id="test2" />
+                        <label for="test2">Yellow</label>
+                    </p>
+                    <p className="col s3">
+                        <input class="with-gap" name="group1" type="radio" id="test3"  />
+                        <label for="test3">Green</label>
+                    </p>
+                    <p className="col s3">
+                        <input name="group1" type="radio" id="test4" disabled="disabled" />
+                        <label for="test4">Brown</label>
+                    </p>
+                </form>
+
+                <a className="waves-effect waves-green btn">확인</a>
+            </div>
+        )
+
         return (
             <div>
-            <div className="col s8" id='calendar'>
-            </div>
-                <div id="modal1" className="modal">
-                    <div className="modal-content">
-                        <h4>title</h4>
-                        <div className="row">
-                            <form className="col s12">
-                                <div className="row">
-                                    <div className="input-field col s12">
-                                        <textarea id="textarea1" className="materialize-textarea">
-                                            {this.state.eventTitle}
-                                        </textarea>
-                                        <label for="textarea1">Textarea</label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="row">
-                                    <div className="input-field col s3">
-                                        <select value="4">
-                                            <option value="4" disabled>시간을 정하세요</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                        <label>시작시간</label>
-                                    </div>
-                                    <div className="input-field col s3">
-                                        <select value="4">
-                                            <option value="4" disabled>분을 정하세요</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                        <label>시작분</label>
-                                        </div>
-                            <div className="input-field col s3">
-                                <select value="4">
-                                    <option value="4" disabled>시간을 정하세요</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                                <label>종료시간</label>
-                            </div>
-                            <div className="input-field col s3">
-                                <select value="4">
-                                    <option value="4" disabled>분을 정하세요</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                                <label>종료분</label>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <form action="#">
-                                <p className="col s3">
-                                    <input name="group1" type="radio" id="test1" />
-                                    <label for="test1">Red</label>
-                                </p>
-                                <p className="col s3">
-                                    <input name="group1" type="radio" id="test2" />
-                                    <label for="test2">Yellow</label>
-                                </p>
-                                <p className="col s3">
-                                    <input className="with-gap" name="group1" type="radio" id="test3"  />
-                                    <label for="test3">Green</label>
-                                </p>
-                                <p className="col s3">
-                                    <input name="group1" type="radio" id="test4" disabled="disabled" />
-                                    <label for="test4">Brown</label>
-                                </p>
-                            </form>
+                <div className="col s8" id='calendar'></div>
 
-                        </div>
 
-                    </div>
-                    <div className="modal-footer">
-                        <a href="#!" className=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                    </div>
-                </div>
+                {this.props.clicked ? test:undefined }
+
             </div>
         )
     }
 }
 
-export default Calendar;
+const mapStateToProps = (state) => {
+    return {
+        clicked:state.Calendar.toJS().status,
+        start:state.Calendar.toJS().start.toString(),
+        end:state.Calendar.toJS().end.toString(),
+        title:state.Calendar.toJS().title
+    };
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        calendar_click: (start,end,title) => {
+            return dispatch(calendar_click(start,end,title));
+        }
+    };
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Calendar);
+
+

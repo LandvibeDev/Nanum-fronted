@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import {List, Map,fromJS} from 'immutable';
 import {syncHistoryWithStore,routerReducer} from 'react-router-redux'
 import Login from './Login';
+import Calendar from './Calendar'
 import update from 'react-addons-update'
 
 const initialValue = {
@@ -35,6 +36,7 @@ export default function studyInfo (state = initialStudy, action){
 const counterApp = combineReducers({
     studyInfo,
     Login,
+    Calendar,
     routing:routerReducer
 });
 

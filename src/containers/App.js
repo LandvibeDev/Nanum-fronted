@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router'
 import {Header, Side, } from '../components';
-import { logoutRequest,getStatusRequest } from '../actions/Login'
+import { logoutRequest,getStatusRequest} from '../actions/Login'
 import Login2 from './Login2'
 
 class App extends React.Component {
@@ -21,7 +21,6 @@ class App extends React.Component {
 
         // get loginData from cookie
         let loginData = getCookie('key');
-
 
         // if loginData is undefined, do nothing
         if (typeof loginData === "undefined") return;
@@ -50,15 +49,12 @@ class App extends React.Component {
         window.location.reload();
     }
 
-
-
-
     render() {
 
         const loggedin=(
             <div className="based">
                 <Header onLogout={this.handleLogout}/>
-                <Side/>
+                <Side birthDay={this.props.birthDay}/>
                 {this.props.children}
             </div>
         );
@@ -75,7 +71,11 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
 
     return {
-        isLoggedIn:state.Login.toJS().status.isLoggedIn
+        isLoggedIn:state.Login.toJS().status.isLoggedIn,
+        firstName:state.Login.toJS().data.firstName,
+        lastName:state.Login.toJS().data.lastName,
+        email:state.Login.toJS().data.email,
+        birthDay:state.Login.toJS().data.birthDay
     };
 };
 
@@ -88,6 +88,7 @@ const mapDispatchToProps = (dispatch) => {
         getStatusRequest:(token,username)=>{
             return dispatch(getStatusRequest(token,username));
         }
+
     };
 };
 

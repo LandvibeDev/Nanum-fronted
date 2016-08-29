@@ -27,7 +27,7 @@ class Side extends React.Component {
                     <img className="circle responsive-img img-top" src="images/man.png"/>
                     <li><div className="userView">
                             <a href="/"><span className="name">Jeong</span></a>
-                            <a href="/"><span className="email">jgb6255@gmail.com</span></a>
+                            <a href="/"><span className="email">{this.props.birthDay}</span></a>
                     </div></li>
                     <li><div className="divider"></div></li>
                     <Link to="studys"><li><a className="waves-effect">스터디 홈</a></li></Link>
