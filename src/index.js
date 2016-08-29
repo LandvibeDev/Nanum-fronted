@@ -7,7 +7,7 @@ import {syncHistoryWithStore,routerReducer} from 'react-router-redux'
 import thunk from 'redux-thunk';
 
 import counterApp from './reducers';
-import { App, SignUp, Login, Main, Study, Login2 } from './containers';
+import { App, Home, Study, } from './containers';
 
 
 const store = createStore(counterApp,applyMiddleware(thunk));
@@ -19,10 +19,8 @@ ReactDOM.render(
     <Provider store = {store}>
         <Router history = {history}>
             <Route path = "/" component = {App}>
-                <IndexRoute component = {Main} />
+                <IndexRoute component = {Home} />
                 <Route path = "studys" component = {Study} />
-                <Route path = "login" component = {Login} />
-                <Route path = "signup" component = {SignUp} />
             </Route>
         </Router>
     </Provider>,

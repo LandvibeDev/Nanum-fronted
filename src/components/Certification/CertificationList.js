@@ -8,7 +8,7 @@ class CertificationList extends React.Component {
     render() {
         return (
             <div>
-                <Memo/>
+
             </div>
         );
     }

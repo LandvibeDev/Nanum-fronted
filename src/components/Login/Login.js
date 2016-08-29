@@ -4,8 +4,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router'
-import { loginRequest,userInfo } from '../actions/Login';
-import LoginCreator from '../components/Main/LoginCreator'
+import { loginRequest,userInfo,signUpClicked } from '../../actions/Login';
+import LoginCreator from './LoginCreator'
 
 class Login extends React.Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <LoginCreator onLogin={this.handleLogin}/>
+                <LoginCreator onLogin={this.handleLogin} signUpClick={this.props.signUpClicked}/>
             </div>
         )
     }
@@ -57,7 +57,6 @@ const mapStateToProps = (state) => {
         status: state.Login.toJS().login.status,
         token:state.Login.toJS().status.token,
         currentUser:state.Login.toJS().status.currentUser,
-
     };
 };
 
@@ -68,7 +67,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         loginInfo:(token) =>{
             return dispatch(userInfo(token));
-        }
+        },
+        signUpClicked:()=>{
+            return dispatch(signUpClicked());
+    }
     };
 };
 

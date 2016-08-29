@@ -13,12 +13,19 @@ class LoginCreator extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     handleChange(e) {
         let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
+    }
+
+    handleKeyPress(e) {
+        if(e.charCode==13) {
+            this.handleLogin();
+        }
     }
 
     handleLogin() {
@@ -55,11 +62,13 @@ class LoginCreator extends React.Component {
                         type="password"
                         className="validate"
                         onChange={this.handleChange}
-                        value={this.state.password}/>
+                        value={this.state.password}
+                        onKeyPress={this.handleKeyPress}/>
                 </div>
                 <div className="input-field col l10">
-                    <a className="waves-effect waves-green col btn l4 offset-l3 red ">Sign up</a>
-                    <a className="waves-effect waves-light col btn l4 offset-l1 " onClick={this.handleLogin}>Sign in</a>
+                    <a className="waves-effect waves-green col btn l4 offset-l3 red" onClick={this.props.signUpClick}>Sign up</a>
+                    <a className="waves-effect waves-light col btn l4 offset-l1"
+                       onClick={this.handleLogin}>Sign in</a>
                 </div>
 
             </div>

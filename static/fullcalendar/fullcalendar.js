@@ -9646,7 +9646,7 @@ function Calendar_constructor(element, overrides) {
 	
 	
 	
-	// Main Rendering
+	// Home Rendering
 	// -----------------------------------------------------------------------------------
 
 

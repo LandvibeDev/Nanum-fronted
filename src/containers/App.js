@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router'
 import {Header, Side, } from '../components';
+import SignUp from '../components/Login/SignUp'
 import { logoutRequest,getStatusRequest} from '../actions/Login'
-import Login2 from './Login2'
+import Main from './Main'
 
 class App extends React.Component {
     constructor(props) {
@@ -54,14 +55,21 @@ class App extends React.Component {
         const loggedin=(
             <div className="based">
                 <Header onLogout={this.handleLogout}/>
-                <Side birthDay={this.props.birthDay}/>
+                <Side birthDay={this.props.email} firstName={this.props.firstName} lastName={this.props.lastName}/>
                 {this.props.children}
             </div>
         );
 
+        const signup=(
+            <div>
+
+            </div>
+        )
+
+
         return (
             <div>
-                {this.props.isLoggedIn ? loggedin  : <Login2/>}
+                {this.props.isLoggedIn ? loggedin  : (this.props.signUp ? <SignUp/>:<Main/>)}
 
             </div>
         )
@@ -71,6 +79,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
 
     return {
+        signUp:state.Login.toJS().signUp.clicked,
         isLoggedIn:state.Login.toJS().status.isLoggedIn,
         firstName:state.Login.toJS().data.firstName,
         lastName:state.Login.toJS().data.lastName,

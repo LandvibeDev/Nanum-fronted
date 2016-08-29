@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router'
 import {Header, Side, } from '../components';
 import { logoutRequest,getStatusRequest } from '../../actions/Login'
-import Login2 from '../../containers/Login2'
+import Login2 from '../../containers/Main'
 
 class Certification extends React.Component {
     constructor(props) {

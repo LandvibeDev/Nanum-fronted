@@ -1,8 +1,8 @@
 import App from './App';
-import Login from './Login';
-import Main from './Main';
-import SignUp from './SignUp';
+import Login from '../components/Login/Login';
+import Home from './Home';
+import SignUp from '../components/Login/SignUp';
 import Study from './Study';
-import Login2 from './Login2'
+import Main from './Main'
 
-export { App, Login, Main, SignUp, Study ,Login2};
+export { App, Login, Home, SignUp, Study ,Main};

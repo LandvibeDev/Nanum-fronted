@@ -13,7 +13,7 @@ class Calendar extends React.Component {
         };
 
     }
-    componentDidMount(prevProps, prveState) {
+    componentDidMount(prevProps, prevState) {
         const test=this.props.calendar_click;
 
         $(document).ready(()=> {
@@ -63,9 +63,6 @@ class Calendar extends React.Component {
                 eventClick: function(calEvent, jsEvent, view) {
                     //alert('Event: ' + calEvent.title);
                     test(calEvent.start,calEvent.end,calEvent.title);
-
-
-
 
                     // change the border color just for fun
                     // $(this).css('border-color', 'red');
@@ -138,19 +135,19 @@ class Calendar extends React.Component {
                 <form action="/" className="row">
                     <p className="col s3">
                         <input name="group1" type="radio" id="test1" />
-                        <label for="test1">Red</label>
+                        <label>Red</label>
                     </p>
                     <p className="col s3">
                         <input name="group1" type="radio" id="test2" />
-                        <label for="test2">Yellow</label>
+                        <label>Yellow</label>
                     </p>
                     <p className="col s3">
-                        <input class="with-gap" name="group1" type="radio" id="test3"  />
-                        <label for="test3">Green</label>
+                        <input className="with-gap" name="group1" type="radio" id="test3"  />
+                        <label>Green</label>
                     </p>
                     <p className="col s3">
                         <input name="group1" type="radio" id="test4" disabled="disabled" />
-                        <label for="test4">Brown</label>
+                        <label>Brown</label>
                     </p>
                 </form>
 

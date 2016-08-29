@@ -22,6 +22,12 @@ export default function Login(state, action) {
                     lastName:'',
                     birthDay:'',
                     email:''
+                }),
+                signUp:Map({
+                    status:'INIT',
+                    error:-1,
+                    clicked:false,
+
                 })});
     }
 
@@ -53,7 +59,20 @@ export default function Login(state, action) {
             return state
                 .setIn(['status','currentUser'],action.username)
                 .setIn(['status','token'],action.token)
-                .setIn(['status','isLoggedIn'],true)
+                .setIn(['status','isLoggedIn'],true);
+        case types.SIGNUP_CLIKED:
+            return state
+                .setIn(['signUp','clicked'],true);
+        case types.SIGNUP:
+            return state
+                .setIn(['signUp','status'],'WAITING')
+                .setIn(['signUp','error'],-1);
+        case types.SIGNUP_SUCCESS:
+            return state
+                .setIn(['signUp','status'],'SUCCESS');
+        case types.SIGNUP_FAILURE:
+            return state
+                .setIn(['signUp','status'],'FAILURE')
         default:
             return state;
     }

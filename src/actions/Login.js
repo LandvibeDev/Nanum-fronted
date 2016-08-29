@@ -1,13 +1,47 @@
 /**
  * Created by jgb on 2016-08-09.
  */
-export const LOGIN_SUCCESS = "LOGIN_SUCCES";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
-export const LOGIN = "LOGIN";
-export const LOGIN_INFO="LOGIN_INFO";
-export const LOGOUT = "LOGOUT";
-export const GET_STATUS ="GET_STATUS";
 import axios from 'axios';
+import {
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGIN,
+    LOGIN_INFO,
+    LOGOUT,
+    GET_STATUS,
+    SIGNUP,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAILURE,
+    SIGNUP_CLIKED
+} from './ActionTypes';
+
+export function signUpRequest(id,password,firstname,lastname,email,birthday){
+    return (dispatch) => {
+        // Inform Login API is starting
+        dispatch(signUp());
+
+        // API REQUEST
+        return axios({
+            method: 'post',
+            url: 'http://landvibe.com:8000/accounts/join/',
+            data: {
+                username:id,
+                password:password,
+                first_name:firstname,
+                last_name:lastname,
+                email:email,
+                birthday:birthday
+            }
+        }).then((response) => {
+            // SUCCEED
+            dispatch(signUpSuccess());
+
+        }).catch((error)=>{
+            console.log(error);
+            dispatch(signUpFailure())
+        })
+    };
+}
 
 export function loginRequest(id, password) {
     return (dispatch) => {
@@ -41,7 +75,7 @@ export function userInfo(token) {
         // API REQUEST
         return axios({
             method: 'get',
-            url: 'http://landvibe.com:8000/users/',
+            url: 'http://landvibe.com:8000/users/i/',
             headers: {
                 'Authorization': 'Token ' + token
             },
@@ -84,6 +118,30 @@ export function getStatus(token,username) {
 export function logoutRequest() {
     return {
         type:LOGOUT
+    }
+}
+
+export function signUp(){
+    return{
+        type:SIGNUP
+    }
+}
+
+export function signUpSuccess(){
+    return{
+        type:SIGNUP_SUCCESS
+    }
+}
+
+export function signUpFailure(){
+    return{
+        type:SIGNUP_FAILURE
+    }
+}
+
+export function signUpClicked() {
+    return {
+        type:SIGNUP_CLIKED
     }
 }
 
