@@ -5,7 +5,7 @@ import * as types from '../actions/ActionTypes';
 import {List, Map,fromJS,} from 'immutable';
 
 
-export default function Calendar(state, action) {
+export default function Scheduler(state, action) {
     if(typeof state === "undefined"){
         state = Map(
             {status:false,

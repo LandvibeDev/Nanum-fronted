@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import Login from '../components/Login/Login'
-import Calendar from '../components/Home/Calendar'
+import Calendar from '../components/Scheduler/Scheduler'
 import Header from '../components/Home/Header'
 import Side from '../components/Home/Side'
 
@@ -13,7 +13,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="row calendar">
-                <Calendar/>
+                <h1>Home</h1>
 
             </div>
         )

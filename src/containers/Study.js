@@ -38,7 +38,7 @@ class Study extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.studyInfo)
+    console.log(state.studyInfo);
 
     return {
         studyData: state.studyInfo

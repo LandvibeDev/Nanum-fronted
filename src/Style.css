@@ -1,8 +1,6 @@
-.side{
-    padding-top:300px;
-}
 
-body {
+
+.base{
     padding-left:300px;
 }
 
@@ -17,10 +15,6 @@ body {
     width: 200px;
 }
 
-.img-top{
-    height:200px;
-    width:200px;
-}
 
 .calendar{
     height:250px;
@@ -29,6 +23,7 @@ body {
 .calendar-modal{
     display:inline;
 }
+
 
 
 

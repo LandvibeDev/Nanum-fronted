@@ -12,7 +12,7 @@ import {
     SIGNUP,
     SIGNUP_SUCCESS,
     SIGNUP_FAILURE,
-    SIGNUP_CLIKED
+    SIGNUP_CLICKED
 } from './ActionTypes';
 
 export function signUpRequest(id,password,firstname,lastname,email,birthday){
@@ -38,7 +38,7 @@ export function signUpRequest(id,password,firstname,lastname,email,birthday){
 
         }).catch((error)=>{
             console.log(error);
-            dispatch(signUpFailure())
+            dispatch(signUpFailure());
         })
     };
 }
@@ -51,7 +51,7 @@ export function loginRequest(id, password) {
         // API REQUEST
         return axios({
             method: 'post',
-            url: 'http://landvibe.com:8000/obtain-auth-token/',
+            url: 'http://landvibe.com:8000/accounts/login/',
             data: {
                 username:id,
                 password:password,
@@ -59,8 +59,7 @@ export function loginRequest(id, password) {
         }).then((response) => {
                 // SUCCEED
                 console.log(response);
-                dispatch(loginSuccess(response.data.token));
-
+                dispatch(loginSuccess(response.data.token,response.data.sessionid));
             })
             .catch((error)=>{
                 console.log(error);
@@ -85,6 +84,7 @@ export function userInfo(token) {
             console.log(response.data);
             dispatch(info(response.data));
 
+
         }).catch((error)=>{
             console.log(error);
             dispatch(loginFailure());
@@ -92,18 +92,28 @@ export function userInfo(token) {
     };
 }
 
-export function getStatusRequest(token,username) {
+export function getStatusRequest(token,username,sessionid) {
     return (dispatch) => {
         // inform Get Status API is starting
         dispatch(getStatus(token,username));
         dispatch(userInfo(token));
 
-        /*return axios.get('/api/account/getInfo')
-            .then((response) => {
-                dispatch(getStatusSuccess(response.data.info.username));
-            }).catch((error) => {
-                dispatch(getStatusFailure());
-            });*/
+        return axios({
+            method: 'post',
+            url: 'http://landvibe.com:8000/session-check/',
+            headers: {
+                'Authorization': 'Token ' + token
+            },
+            data: {
+                sessionid:sessionid
+            }
+        }).then((response) => {
+            console.log("oo");
+
+        }).catch((error) => {
+            console.log(error);
+            console.log("nn");
+        });
     };
 }
 
@@ -141,7 +151,7 @@ export function signUpFailure(){
 
 export function signUpClicked() {
     return {
-        type:SIGNUP_CLIKED
+        type:SIGNUP_CLICKED
     }
 }
 
@@ -158,10 +168,11 @@ export function login() {
     };
 }
 
-export function loginSuccess(token) {
+export function loginSuccess(token,sessionid) {
     return {
         type: LOGIN_SUCCESS,
-        token:token
+        token:token,
+        sessionid:sessionid
     };
 }
 

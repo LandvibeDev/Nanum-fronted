@@ -29,11 +29,7 @@ app.use('/images', express.static(__dirname + '/../images')); // 사진 파일 �
 app.use(express.static(__dirname + '/../node_modules')); // npm packages에 직접 접근 하는 경로
 app.use(express.static(__dirname + '/../public')); // public/index.html이 시작점
 app.use(bodyParser.json());  //요청에서 JSON을 파싱할때 사용되는 미들웨어
-app.use(session({
-  secret: 'Nanum1$1$234',
-  resave: false,
-  saveUninitialized: true
-}));// express 에서 세션을 다룰 때 사용되는 미들웨어
+
 
 
 import study from './routes/study';

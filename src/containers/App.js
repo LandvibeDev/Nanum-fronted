@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {Link, browserHistory} from 'react-router'
-import {Header, Side, } from '../components';
+import {Header, Side,UserSide } from '../components';
 import SignUp from '../components/Login/SignUp'
 import { logoutRequest,getStatusRequest} from '../actions/Login'
 import Main from './Main'
@@ -33,7 +33,7 @@ class App extends React.Component {
         // if not logged in, do nothing
         if (!loginData.isLoggedIn) return;
 
-        this.props.getStatusRequest(loginData.token,loginData.username);
+        this.props.getStatusRequest(loginData.token,loginData.username,loginData.sessionid);
     }
 
     handleLogout(){
@@ -42,7 +42,8 @@ class App extends React.Component {
         let loginData = {
             isLoggedIn:false,
             username: '',
-            token:''
+            token:'',
+            sessionid:''
         };
 
         document.cookie = 'key=' + btoa(JSON.stringify(loginData));
@@ -53,18 +54,21 @@ class App extends React.Component {
     render() {
 
         const loggedin=(
-            <div className="based">
-                <Header onLogout={this.handleLogout}/>
-                <Side birthDay={this.props.email} firstName={this.props.firstName} lastName={this.props.lastName}/>
-                {this.props.children}
+            <div>
+                <div>
+                    {this.props.isStudy ?
+                        <Side userData={this.props.userData}
+                              studyId={this.props.studyId}/>
+                        :
+                        <UserSide userData={this.props.userData}/>
+                    }
+                </div>
+                <div className="base">
+                    <Header onLogout={this.handleLogout}/>
+                    {this.props.children}
+                </div>
             </div>
         );
-
-        const signup=(
-            <div>
-
-            </div>
-        )
 
 
         return (
@@ -77,14 +81,14 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.Study.toJS().study.isStudy);
 
     return {
         signUp:state.Login.toJS().signUp.clicked,
         isLoggedIn:state.Login.toJS().status.isLoggedIn,
-        firstName:state.Login.toJS().data.firstName,
-        lastName:state.Login.toJS().data.lastName,
-        email:state.Login.toJS().data.email,
-        birthDay:state.Login.toJS().data.birthDay
+        userData:state.Login.toJS().data,
+        isStudy:state.Study.toJS().study.isStudy,
+        studyId:state.Study.toJS().study.id
     };
 };
 
@@ -94,9 +98,9 @@ const mapDispatchToProps = (dispatch) => {
         logoutRequest: () => {
             return dispatch(logoutRequest());
         },
-        getStatusRequest:(token,username)=>{
-            return dispatch(getStatusRequest(token,username));
-        }
+        getStatusRequest:(token,username,sessionid)=>{
+            return dispatch(getStatusRequest(token,username,sessionid));
+        },
 
     };
 };

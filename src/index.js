@@ -8,6 +8,8 @@ import thunk from 'redux-thunk';
 
 import counterApp from './reducers';
 import { App, Home, Study, } from './containers';
+import Verification from './components/Verification/VerificationList'
+import Scheduler from './components/Scheduler/Scheduler'
 
 
 const store = createStore(counterApp,applyMiddleware(thunk));
@@ -20,7 +22,11 @@ ReactDOM.render(
         <Router history = {history}>
             <Route path = "/" component = {App}>
                 <IndexRoute component = {Home} />
-                <Route path = "studys" component = {Study} />
+                <Route path = "study" component = {Study} >
+                    <Route path = "/:studyID" component = {Study} />
+                </Route>
+                <Route path = "verification" component = {Verification} />
+                <Route path ="scheduler" component={Scheduler}/>
             </Route>
         </Router>
     </Provider>,

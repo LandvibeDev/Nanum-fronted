@@ -2,10 +2,10 @@
  * Created by jgb on 2016-08-19.
  */
 import React from 'react';
-import { calendar_click } from '../../actions/Calendar'
+import { calendar_click } from '../../actions/Scheduler'
 import { connect } from 'react-redux';
 
-class Calendar extends React.Component {
+class Scheduler extends React.Component {
     constructor(props) {
         super(props);
         this.state= {
@@ -156,7 +156,7 @@ class Calendar extends React.Component {
         )
 
         return (
-            <div>
+            <div className="row">
                 <div className="col s8" id='calendar'></div>
 
 
@@ -169,10 +169,10 @@ class Calendar extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        clicked:state.Calendar.toJS().status,
-        start:state.Calendar.toJS().start.toString(),
-        end:state.Calendar.toJS().end.toString(),
-        title:state.Calendar.toJS().title
+        clicked:state.Scheduler.toJS().status,
+        start:state.Scheduler.toJS().start.toString(),
+        end:state.Scheduler.toJS().end.toString(),
+        title:state.Scheduler.toJS().title
     };
 };
 
@@ -185,6 +185,6 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps,mapDispatchToProps)(Scheduler);
 
 

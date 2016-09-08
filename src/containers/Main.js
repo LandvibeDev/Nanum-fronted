@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import Login from '../components/Login/Login';
-import Calendar from '../components/Home/Calendar'
+import Calendar from '../components/Scheduler/Scheduler'
 
 
 class Main extends React.Component {

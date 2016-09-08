@@ -15,13 +15,15 @@ export default function Login(state, action) {
                 status:Map({
                     isLoggedIn:false,
                     token:'',
+                    sessionid:'',
                     currentUser:''
                 }),
                 data:Map({
                     firstName:'',
                     lastName:'',
                     birthDay:'',
-                    email:''
+                    email:'',
+                    studyList:[]
                 }),
                 signUp:Map({
                     status:'INIT',
@@ -40,16 +42,18 @@ export default function Login(state, action) {
             return state
                 .setIn(['login','status'],'SUCCESS')
                 .setIn(['status','isLoggedIn'],true)
-                .setIn(['status','token'],action.token);
+                .setIn(['status','token'],action.token)
+                .setIn(['status','sessionid'],action.sessionid);
         case types.LOGIN_FAILURE:
             return state
                 .setIn(['login','status'],'FAILURE');
         case types.LOGIN_INFO:
             return state
-                .setIn(['data','firstName'],action.data.user.first_name)
-                .setIn(['data','lastName'],action.data.user.last_name)
-                .setIn(['data','email'],action.data.user.email)
-                .setIn(['data','birthDay'],action.data.birthday);
+                .setIn(['data','firstName'],action.data.user_info.user.first_name)
+                .setIn(['data','lastName'],action.data.user_info.user.last_name)
+                .setIn(['data','email'],action.data.user_info.user.email)
+                .setIn(['data','birthDay'],action.data.user_info.birthday)
+                .setIn(['data','studyList'],action.data.study_info);
         case types.LOGOUT:
             return state
                 .setIn(['status','currentUser'],'')
@@ -60,7 +64,7 @@ export default function Login(state, action) {
                 .setIn(['status','currentUser'],action.username)
                 .setIn(['status','token'],action.token)
                 .setIn(['status','isLoggedIn'],true);
-        case types.SIGNUP_CLIKED:
+        case types.SIGNUP_CLICKED:
             return state
                 .setIn(['signUp','clicked'],true);
         case types.SIGNUP:
@@ -72,7 +76,7 @@ export default function Login(state, action) {
                 .setIn(['signUp','status'],'SUCCESS');
         case types.SIGNUP_FAILURE:
             return state
-                .setIn(['signUp','status'],'FAILURE')
+                .setIn(['signUp','status'],'FAILURE');
         default:
             return state;
     }

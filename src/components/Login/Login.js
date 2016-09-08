@@ -22,7 +22,8 @@ class Login extends React.Component {
                     let loginData = {
                         isLoggedIn: true,
                         username: id,
-                        token:this.props.token
+                        token:this.props.token,
+                        sessionid:this.props.sessionid
                     };
 
                     document.cookie = 'key=' + btoa(JSON.stringify(loginData));
@@ -56,6 +57,7 @@ const mapStateToProps = (state) => {
     return {
         status: state.Login.toJS().login.status,
         token:state.Login.toJS().status.token,
+        sessionid:state.Login.toJS().status.sessionid,
         currentUser:state.Login.toJS().status.currentUser,
     };
 };
